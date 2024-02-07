@@ -1,12 +1,21 @@
-{% if user_ip %}
-    <h2> hola q tal, tu direccion ip es {{user_ip}} </h2>
+{% extends 'base.html' %}
 
-{%else%}
-    <a href="{{url_for('index') }}">Crear cookie</a>
-{%endif%}
+{% block title %}
+    {{ super() }} 
+    Welcome to Flask proyect
+{% endblock %}
 
-<ul>
-{% for item in items %}
-    <li>{{item}}</li>
-{%endfor%}
-</ul>
+{% block content %}
+    {% if user_ip %}
+        <h2> hola q tal, tu direccion ip es {{user_ip}} </h2>
+
+    {%else%}
+        <a href="{{url_for('index') }}">Crear cookie</a>
+    {%endif%}
+
+    <ul>
+    {% for item in items %}
+        <li>{{item}}</li>
+    {%endfor%}
+    </ul>
+{% endblock %}
