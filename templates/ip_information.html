@@ -4,3 +4,9 @@
 {%else%}
     <a href="{{url_for('index') }}">Crear cookie</a>
 {%endif%}
+
+<ul>
+{% for item in items %}
+    <li>{{item}}</li>
+{%endfor%}
+</ul>

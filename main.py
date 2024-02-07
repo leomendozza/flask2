@@ -2,6 +2,7 @@ from flask import Flask, request, make_response, redirect, render_template #impo
 
 app = Flask(__name__) #inicio la app
 
+items = ["item 1", "item 2", "item 3", "item 4"]
 @app.route("/index") #declaro cual va a ser mi ruta desde el url (a esto es le llama endpoint)
 def index():
     user_ip_information = request.remote_addr #el objeto request accede a la informfacion que esta enviando el cliente 
@@ -12,6 +13,12 @@ def index():
 @app.route('/show_information_address') #aca creamos la url donde vamos a redirigir a cliente
 def show_information():
     user_ip=request.cookies.get("user_ip_information")
-    return render_template("ip_information.html", user_ip=user_ip)#con render_template leo el html y con user_ip=user_ip le envio el valor desde python al html
+    context ={
+        "user_ip":user_ip,
+        "items": items
+    }
+    return render_template("ip_information.html", **context)#con render_template leo el html y con user_ip=user_ip le envio el valor desde python al html - con **descomprime la lista y puedo llamar directamente en el html
     
 app.run(debug = True) #con esto corro la app y el debug sirve para poder actualizar sola la pagina
+
+
