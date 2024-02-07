@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macros%}
 
 {% block title %}
     {{ super() }} 
@@ -15,7 +16,7 @@
 
     <ul>
     {% for item in items %}
-        <li>{{item}}</li>
+        {{macros.render_items(item)}}
     {%endfor%}
     </ul>
 {% endblock %}
