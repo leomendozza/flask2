@@ -1,7 +1,25 @@
-<nav> 
+<!--
+    <nav> 
     <ul>
         <img src="{{url_for('static',filename='images/flask_foont.png')}}" alt="">
         <li><a href="{{ url_for ('index') }}">Boton de inicio</a></li>
         <li><a href="https://google.com">Boton Google</a></li>
     </ul>
 </nav>
+
+-->
+<img src="{{url_for('static',filename='images/flask_foont.png')}}" alt="">
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link" href="#">Flask App</a>
+      </li>
+    <li class="nav-item">
+        <a href="{{ url_for ('index') }}">Boton de inicio</a>
+    </li>
+    <li class="nav-item">
+        <a href="https://google.com">Boton Google</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
