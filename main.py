@@ -3,6 +3,12 @@ from flask import Flask, request, make_response, redirect, render_template #impo
 app = Flask(__name__) #inicio la app
 
 items = ["item 1", "item 2", "item 3", "item 4"]
+
+@app.errorhandler(404) #ruta especial para los errores
+def not_found_endpoint(error):
+    return render_template('404.html', error=error) #lee el html 404.html donde vamos a crear una plantilla para cuando se genere un error
+
+
 @app.route("/index") #declaro cual va a ser mi ruta desde el url (a esto es le llama endpoint)
 def index():
     user_ip_information = request.remote_addr #el objeto request accede a la informfacion que esta enviando el cliente 
