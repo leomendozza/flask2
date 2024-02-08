@@ -1,8 +1,9 @@
-from flask import Flask, request, make_response, redirect, render_template #importo desde la libreria flask 
+from flask import Flask, request, make_response, redirect, render_template, session #importo desde la libreria flask 
 from flask_bootstrap import Bootstrap 
 app = Flask(__name__) #inicio la app
-
 bootstrap = Bootstrap(app)
+
+app.config["SECRET KEY"] = 'CLAVE SEGURA'
 
 items = ["item 1", "item 2", "item 3", "item 4"]
 @app.errorhandler(404) #ruta especial para los errores
@@ -14,12 +15,12 @@ def not_found_endpoint(error):
 def index():
     user_ip_information = request.remote_addr #el objeto request accede a la informfacion que esta enviando el cliente 
     response = make_response(redirect('/show_information_address')) #el make response crea una redireccion como respuesta
-    response.set_cookie('user_ip_information', user_ip_information) #la cookie sirve para cuando accede el cliente se cree automaticamente en la web y se puedan a acceder a los parametros
+    session["user_ip_information"] = user_ip_information
     return response
 
 @app.route('/show_information_address') #aca creamos la url donde vamos a redirigir a cliente
 def show_information():
-    user_ip=request.cookies.get("user_ip_information")
+    user_ip=session.get("user_ip_information")
     context ={
         "user_ip":user_ip,
         "items": items
