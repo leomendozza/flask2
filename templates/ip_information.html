@@ -7,6 +7,10 @@
 {% endblock %}
 
 {% block content %}
+    {%if username%}
+        <h1>Bienvenido usuario {{username}}</h1>
+        {{username}}
+    {%endif%}
     {% if user_ip %}
         <h2> hola que tal, tu direccion ip es {{user_ip}} </h2>
 
